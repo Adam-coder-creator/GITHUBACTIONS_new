@@ -32,3 +32,12 @@ resource "aws_subnet" "new_part2"{
     }
 
 }
+
+#Creating Internet Gateway
+resource "aws_internet_gateway" "new_igtw" {
+    vpc_id = aws_vpc.new.id
+
+    tags ={
+        Name = "Main_internet_gateway"
+    }
+}
