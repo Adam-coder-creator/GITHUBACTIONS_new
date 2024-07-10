@@ -41,3 +41,17 @@ resource "aws_internet_gateway" "new_igtw" {
         Name = "Main_internet_gateway"
     }
 }
+
+#Creating route table on existing VPC
+resource "aws_route_table" "main_route_table" {
+    vpc_id = aws_vpc.new.id
+    
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = aws_internet_gateway.new_igtw.id
+    }
+    tags = {
+        Name = "Route_Table"
+    }
+  
+}
