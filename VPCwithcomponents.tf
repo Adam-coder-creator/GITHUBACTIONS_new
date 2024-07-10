@@ -11,7 +11,7 @@ tags = {
 }
 
 #Creating two subnets inside VPC
-resource "aws_subnet" "new_part1"{
+/*resource "aws_subnet" "new_part1"{
     vpc_id = aws_vpc.new.id
     cidr_block = "10.0.1.0/24"
     map_public_ip_on_launch = true
@@ -32,6 +32,19 @@ resource "aws_subnet" "new_part2"{
     }
 
 }
+*/
+
+resource "aws_subnet" "new" {
+  count = length(var.cidr)
+
+  vpc_id     = aws_vpc.new.id
+  cidr_block = var.cidr[count.index]
+
+  tags = {
+    Name = var.name[count.index]
+  }
+}
+
 
 #Creating Internet Gateway
 resource "aws_internet_gateway" "new_igtw" {
@@ -55,3 +68,11 @@ resource "aws_route_table" "main_route_table" {
     }
   
 }
+
+#Creating function route table association
+/*resource "aws_route_table_association" "new_function"{
+    subnet_id = aws_subnet.new_part1.id  
+    subnet_id = aws_subnet.new_part2.id
+    route_table_id = aws_route_table.main_route_table.id
+}
+*/
