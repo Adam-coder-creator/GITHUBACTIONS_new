@@ -33,15 +33,14 @@ resource "aws_subnet" "new_part2"{
 
 }
 */
-
 resource "aws_subnet" "new" {
-  count = length(var.cidr)
+  count = length(var.cidr_block_01)
 
   vpc_id     = aws_vpc.new.id
-  cidr_block = var.cidr[count.index]
+  cidr_block = var.cidr_block_01[count.index]
 
   tags = {
-    Name = var.name[count.index]
+    Name = var.name_01[count.index]
   }
 }
 
@@ -70,9 +69,8 @@ resource "aws_route_table" "main_route_table" {
 }
 
 #Creating function route table association
-/*resource "aws_route_table_association" "new_function"{
-    subnet_id = aws_subnet.new_part1.id  
-    subnet_id = aws_subnet.new_part2.id
+resource "aws_route_table_association" "new_function"{
+    count = length(var.cidr_block_01)
+    subnet_id = aws_subnet.new[count.index].id
     route_table_id = aws_route_table.main_route_table.id
 }
-*/
