@@ -74,3 +74,14 @@ resource "aws_route_table_association" "new_function"{
     subnet_id = aws_subnet.new[count.index].id
     route_table_id = aws_route_table.main_route_table.id
 }
+
+#Creating security group
+resource "aws_security_group" "allow_tls"{
+    description = "Allow specific inbound traffic and all outbound traffic"
+    vpc_id = aws_vpc.new.id
+    name = "allow TLS"
+
+    tags ={
+        Name = "Main_security-group"
+    }
+}
