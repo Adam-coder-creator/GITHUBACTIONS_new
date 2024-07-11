@@ -85,3 +85,28 @@ resource "aws_security_group" "allow_tls"{
         Name = "Main_security-group"
     }
 }
+
+#Creating rules
+resource "aws_vpc_security_group_ingress_rule" "allow_tls"{
+    cidr_ipv4 = aws_vpc.new.cidr_block
+    from_port = 22
+    to_port = 22
+    security_group_id = aws_security_group.allow_tls.id
+    ip_protocol = "tcp"
+    
+    tags ={
+        Name = "First_rule"
+    }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_tls_2"{
+    cidr_ipv4 = "0.0.0.0/0"
+    #from_port = 22
+    #to_port = 22
+    security_group_id = aws_security_group.allow_tls.id
+    ip_protocol = "-1"
+    
+    tags ={
+        Name = "Second_rule"
+    }
+}
