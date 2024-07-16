@@ -1,22 +1,20 @@
 
 #Creating VPC
 resource "aws_vpc" "new" {
-    cidr_block = "10.0.0.0/16"
+     cidr_block  = "10.0.0.0/16"
     enable_dns_hostnames = true
-    #region = "eu-north-1"
 
 tags = {
     name = "Main_VPC"
 }
 
+#Creating subnets
 }
 resource "aws_subnet" "new" {
   count = length(var.cidr_block_01)
-
   vpc_id     = aws_vpc.new.id
   cidr_block = var.cidr_block_01[count.index]
   map_public_ip_on_launch = true
-
   tags = {
     Name = var.name_01[count.index]
   }
@@ -26,13 +24,12 @@ resource "aws_subnet" "new" {
 #Creating Internet Gateway
 resource "aws_internet_gateway" "new_igtw" {
     vpc_id = aws_vpc.new.id
-
-    tags ={
+      tags ={
         Name = "Main_internet_gateway"
     }
 }
 
-#Creating route table on existing VPC
+#Creating Route Table on existing VPC
 resource "aws_route_table" "main_route_table" {
     vpc_id = aws_vpc.new.id
     
@@ -53,7 +50,7 @@ resource "aws_route_table_association" "new_function"{
     route_table_id = aws_route_table.main_route_table.id
 }
 
-#Creating security group
+#Creating Security Group
 resource "aws_security_group" "allow_tls"{
     description = "Allow specific inbound traffic and all outbound traffic"
     vpc_id = aws_vpc.new.id
@@ -79,8 +76,6 @@ resource "aws_vpc_security_group_ingress_rule" "allow_tls"{
 
 resource "aws_vpc_security_group_ingress_rule" "allow_tls_2"{
     cidr_ipv4 = "0.0.0.0/0"
-    #from_port = 22
-    #to_port = 22
     security_group_id = aws_security_group.allow_tls.id
     ip_protocol = "-1"
     
