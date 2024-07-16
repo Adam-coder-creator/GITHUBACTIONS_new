@@ -1,6 +1,6 @@
 # EC2 monitoring"
 # File description :
-## provaider.tf
+## provider.tf
 *In this file we adding our provider (AWS) to interact with the resources which we create in futher action.*
 ## VPCwithcomponenets.tf
 *We declare all the resources needed to create the VPC such as subnet, internet gateway, route table and function which is*
