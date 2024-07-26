@@ -10,4 +10,4 @@ jobs:
     - name: Validate Terraform configuration
       uses: devops-infra/action-terraform-validate@v0.3.1
       with:
-        path: provider.tf
+        path: EC2_plus_user_data_execution/provider.tf
