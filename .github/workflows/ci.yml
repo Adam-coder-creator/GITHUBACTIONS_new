@@ -9,5 +9,3 @@ jobs:
       uses: actions/checkout@v2
     - name: Validate Terraform configuration
       uses: devops-infra/action-terraform-validate@v0.3.1
-      with:
-        path: EC2_plus_user_data_execution/provider.tf
