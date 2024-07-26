@@ -15,5 +15,5 @@ jobs:
       - name: terraform apply
         uses: dflook/terraform-apply@v1
         with:
-          path: E:\terraform\nowy_projekcik_VPC\terraform\infra
+          path: E:\terraform\nowy_projekcik_VPC
           auto_approve: true
