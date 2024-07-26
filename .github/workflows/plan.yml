@@ -1,12 +1,19 @@
-name: Plan Terraform
+name: Apply
+
 on:
   push
+    
+
 jobs:
-  terraform-plan:
+  apply:
     runs-on: ubuntu-latest
+    name: Apply Terraform
     steps:
-     - name: Terraform plan
-       id: plan
-       if: github.event_name == 'pull_request'
-       run: terraform plan -no-color -input=false
-       continue-on-error: true
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: terraform apply
+        uses: dflook/terraform-apply@v1
+        with:
+          path: terraform\infra
+          auto_approve: true
