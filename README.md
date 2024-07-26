@@ -23,3 +23,5 @@
 ## Summary
 *As a result of this project we create EC2 instance and run simple bash command to execute it on EC2 instances. As a result we see the*
 *newly created file hello.txt with message included insied "Hello World!"*
+## GitHub Actions
+*Added simple workflow which is checking the validation of the code.*
