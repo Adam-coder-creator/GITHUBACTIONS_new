@@ -7,9 +7,9 @@ terraform {
     }
 }
 provider "aws" {
-  region = "eu-north-1"  # Zamie? na sw¢j region
+  region = "eu-north-1"  
 }
-# Tworzenie VPC
+# Creating VPC
 resource "aws_vpc" "example_vpc" {
   cidr_block = "10.0.0.0/16"
 
@@ -18,18 +18,18 @@ resource "aws_vpc" "example_vpc" {
   }
 }
 
-# Tworzenie Subnet
+# Creating Subnet
 resource "aws_subnet" "example_subnet" {
   vpc_id            = aws_vpc.example_vpc.id
   cidr_block        = "10.0.1.0/24"
-  availability_zone = "eu-north-1a"  # Zamie? na odpowiedni? stref? dost?pno?ci
+  availability_zone = "eu-north-1a"  
 
   tags = {
     Name = "ExampleSubnet"
   }
 }
 
-# Tworzenie Security Group
+# Creating Security Group
 resource "aws_security_group" "example_sg" {
   name_prefix = "example-"
   description = "Allow SSH and HTTP"
@@ -61,9 +61,9 @@ resource "aws_security_group" "example_sg" {
   }
 }
 
-# Tworzenie EC2 Instance
+# Creating EC2 Instance
 resource "aws_instance" "example" {
-  ami           = "ami-0b8fd93c15b2c81ce"  # Zamie? na odpowiednie AMI 2
+  ami           = "ami-0b8fd93c15b2c81ce"  
   instance_type = "t3.micro"
   subnet_id     = aws_subnet.example_subnet.id
   vpc_security_group_ids = [aws_security_group.example_sg.id]
