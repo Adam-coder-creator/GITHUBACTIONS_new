@@ -1,5 +1,5 @@
 # EC2 monitoring"
-# File description :
+# File description:
 ## provider.tf
 *In this file we adding our provider (AWS) to interact with the resources which we create in futher action.*
 ## VPCwithcomponenets.tf
