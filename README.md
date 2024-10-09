@@ -25,3 +25,4 @@
 *newly created file hello.txt with message included insied "Hello World!"*
 ## GitHub Actions
 *Added simple workflow which is checking the validation of the code.*
+## wersja1.0
